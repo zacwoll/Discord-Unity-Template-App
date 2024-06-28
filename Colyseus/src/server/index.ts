@@ -65,7 +65,7 @@ app.post("/api/token", async (req, res) => {
         client_secret: process.env.CLIENT_SECRET!,
         grant_type: "authorization_code",
         code: req.body.code,
-        redirect_uri: "https://explanation-surname-api-cbs.trycloudflare.com",
+        redirect_uri: "https://follow-bother-charms-timeline.trycloudflare.com",
       }),
     });
 
