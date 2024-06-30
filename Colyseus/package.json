@@ -6,6 +6,7 @@
     "colyseus": "npx schema-codegen src/server/utils/structures.ts --csharp --output _unity_colyseus/",
     "build": "npx tsc --project tsconfig.emit.json && node ./src/scripts/build.js",
     "execute": "node build/server/index.js",
+    "proxy": "node ./src/scripts/launch_cloudflare.js",
     "start": "npm run build && npm run execute"
   },
   "license": "MIT",

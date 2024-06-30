@@ -12,6 +12,8 @@ import { WebSocketTransport } from "@colyseus/ws-transport";
 import { MatchmakingRoom, GameRoom } from "./utils/rooms";
 import { monitor } from "@colyseus/monitor";
 
+// Log the cloudflared hostname
+console.log(`hostname: ${process.env.CLOUDFLARED_URL}`);
 
 //\ Prepare express server
 const app = express();
@@ -52,7 +54,7 @@ app.post("/api/token", async (req, res) => {
 
   //? No code
   if (!req.body.code) return res.status(400);
-  
+
   //\ Fetch token from dev portal
   try {
     const response = await fetch(`https://discord.com/api/oauth2/token`, {
@@ -65,7 +67,8 @@ app.post("/api/token", async (req, res) => {
         client_secret: process.env.CLIENT_SECRET!,
         grant_type: "authorization_code",
         code: req.body.code,
-        redirect_uri: "https://follow-bother-charms-timeline.trycloudflare.com",
+        redirect_uri:
+          process.env.CLOUDFLARED_URL || '',
       }),
     });
 
